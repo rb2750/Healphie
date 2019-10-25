@@ -1,0 +1,23 @@
+name: healphie
+description: Health tracker for Sophie
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  charts_flutter: ^0.8.1
+  flutter_svg: ^0.14.1
+  line_icons: ^0.2.0
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/drawer_header_background.png
