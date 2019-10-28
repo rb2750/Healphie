@@ -109,7 +109,7 @@ class ChartState extends State<Charts> {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     for (var key in prefs.getKeys()) {
-      DateTime datetime = new DateFormat("dd-MM-yyyy hh:mm:ss").parse(key);
+      DateTime datetime = new DateFormat("dd-MM-yyyy HH:mm:ss").parse(key);
       bool relevant = false;
 
       if (chartTimeScale == TimeScale.DAY) {
@@ -123,7 +123,7 @@ class ChartState extends State<Charts> {
       if (relevant) {
         Color color = Color(prefs.getInt(key));
         charts.Color chartColor = charts.Color(r: color.red, g: color.green, b: color.blue);
-        data.add(new OrdinalHappinessBar(new DateFormat("hh:mm").format(datetime), chartColor));
+        data.add(new OrdinalHappinessBar(new DateFormat("HH:mm").format(datetime), chartColor));
       }
     }
 
@@ -159,7 +159,7 @@ class ChartState extends State<Charts> {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     for (var key in prefs.getKeys()) {
-      DateTime datetime = new DateFormat("dd-MM-yyyy hh:mm:ss").parse(key);
+      DateTime datetime = new DateFormat("dd-MM-yyyy HH:mm:ss").parse(key);
       bool relevant = false;
 
       if (chartTimeScale == TimeScale.DAY) {

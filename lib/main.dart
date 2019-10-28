@@ -185,8 +185,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.happyColor),
                               shape: BoxShape.circle,
@@ -196,11 +196,11 @@ class LogHealthFragment extends StatelessWidget {
                                 Icons.favorite,
                                 color: Colors.white,
                               ),
-                              iconSize: 100,
+                              iconSize: 90,
                               padding: EdgeInsets.only(top: 10),
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.happyColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.happyColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -213,8 +213,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.relaxedColor),
                               shape: BoxShape.circle,
@@ -225,10 +225,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 100,
+                              iconSize: 90,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.relaxedColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.relaxedColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -241,8 +241,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.boredColor),
                               shape: BoxShape.circle,
@@ -253,10 +253,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.only(left: 10, bottom: 10),
-                              iconSize: 100,
+                              iconSize: 90,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.boredColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.boredColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -269,8 +269,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.veryBadColor),
                               shape: BoxShape.circle,
@@ -281,10 +281,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 100,
+                              iconSize: 90,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.veryBadColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.veryBadColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -297,8 +297,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.anxiousColor),
                               shape: BoxShape.circle,
@@ -309,10 +309,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 100,
+                              iconSize: 90,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.anxiousColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.anxiousColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -325,8 +325,8 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                             decoration: new BoxDecoration(
                               color: Color(EmotionColors.numbColor),
                               shape: BoxShape.circle,
@@ -337,10 +337,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 100,
+                              iconSize: 90,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.numbColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy HH:mm:ss").format(DateTime.now()), EmotionColors.numbColor);
                                 pageState.showCharts();
                               },
                             )),
