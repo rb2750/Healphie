@@ -4,8 +4,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'charts.dart';
+import 'emotioncolors.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,13 +32,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String selected;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
+  String selected;
   Widget body;
 
   _MyHomePageState() {
     body = LogHealthFragment(this);
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+
+    scheduleNotifications();
   }
+
+//  @override
+//  initState() {
+//    super.initState();
+//    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+//
+//    scheduleNotifications();
+//  }
+
+  void scheduleNotifications() async {
+    var initializationSettingsAndroid = new AndroidInitializationSettings("@mipmap/ic_launcher");
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails('sophie', 'SophieChannel', 'Sophie');
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    flutterLocalNotificationsPlugin.initialize(new InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS) /*, onSelectNotification: onSelectNotification*/);
+    await flutterLocalNotificationsPlugin.periodicallyShow(0, 'Healphie', 'How are you feeling?', RepeatInterval.Hourly, platformChannelSpecifics, payload: 'none');
+  }
+
+//  Future onSelectNotification(String payload) async {
+//    showDialog(
+//      context: context,
+//      builder: (_) {
+//        return new AlertDialog(
+//          title: Text("PayLoad"),
+//          content: Text("Payload : $payload"),
+//        );
+//      },
+//    );
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,12 +164,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class LogHealthFragment extends StatelessWidget {
-  int happyColor = 0xFFFAB6F8;
-  int relaxedColor = 0xFFAEDFE8;
-  int boredColor = 0xFFAEE8C4;
-  int veryBadColor = 0xFFE80909;
-  int anxiousColor = 0xFF9F92F0;
-  int numbColor = 0xFFED72F0;
   final _MyHomePageState pageState;
 
   LogHealthFragment(this.pageState);
@@ -148,15 +179,16 @@ class LogHealthFragment extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(10, 30, 10, 20),
                 child: Wrap(
                   spacing: 60, runSpacing: 30,
+//                crossAxisAlignment: WrapCrossAlignment.stretch,
 //                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(happyColor),
+                              color: Color(EmotionColors.happyColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -164,11 +196,11 @@ class LogHealthFragment extends StatelessWidget {
                                 Icons.favorite,
                                 color: Colors.white,
                               ),
-                              iconSize: 110,
+                              iconSize: 100,
                               padding: EdgeInsets.only(top: 10),
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), happyColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.happyColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -181,10 +213,10 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(relaxedColor),
+                              color: Color(EmotionColors.relaxedColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -193,10 +225,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 110,
+                              iconSize: 100,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), relaxedColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.relaxedColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -209,10 +241,10 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(boredColor),
+                              color: Color(EmotionColors.boredColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -221,10 +253,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.only(left: 10, bottom: 10),
-                              iconSize: 110,
+                              iconSize: 100,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), boredColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.boredColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -237,10 +269,10 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(veryBadColor),
+                              color: Color(EmotionColors.veryBadColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -249,10 +281,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 110,
+                              iconSize: 100,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), veryBadColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.veryBadColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -265,10 +297,10 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(anxiousColor),
+                              color: Color(EmotionColors.anxiousColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -277,10 +309,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 110,
+                              iconSize: 100,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), anxiousColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.anxiousColor);
                                 pageState.showCharts();
                               },
                             )),
@@ -293,10 +325,10 @@ class LogHealthFragment extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         new Container(
-                            width: 130,
-                            height: 130,
+                            width: 120,
+                            height: 120,
                             decoration: new BoxDecoration(
-                              color: Color(numbColor),
+                              color: Color(EmotionColors.numbColor),
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -305,10 +337,10 @@ class LogHealthFragment extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
-                              iconSize: 110,
+                              iconSize: 100,
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
-                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), numbColor);
+                                prefs.setInt(new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now()), EmotionColors.numbColor);
                                 pageState.showCharts();
                               },
                             )),
