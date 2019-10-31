@@ -171,7 +171,7 @@ class LogHealthFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        padding: EdgeInsets.only(left: 20, top: 20),
+        padding: EdgeInsets.only(top: 20),
         child: Column(
           children: <Widget>[
             Align(child: Text("How are you feeling?", style: TextStyle(fontSize: 30))),

@@ -113,7 +113,7 @@ class ChartState extends State<Charts> {
       bool relevant = false;
 
       if (chartTimeScale == TimeScale.DAY) {
-        relevant = !DateTime.now().isBefore(datetime.subtract(new Duration(days: 1)));
+        relevant = !DateTime.now().isBefore(datetime.subtract(new Duration(hours: 12)));
       } else if (chartTimeScale == TimeScale.MONTH) {
         relevant = !DateTime.now().isBefore(datetime.subtract(new Duration(days: 30)));
       } else if (chartTimeScale == TimeScale.YEAR) {
@@ -123,9 +123,11 @@ class ChartState extends State<Charts> {
       if (relevant) {
         Color color = Color(prefs.getInt(key));
         charts.Color chartColor = charts.Color(r: color.red, g: color.green, b: color.blue);
-        data.add(new OrdinalHappinessBar(new DateFormat("HH:mm").format(datetime), chartColor));
+        data.add(new OrdinalHappinessBar(datetime, chartColor));
       }
     }
+
+    data.sort((a,b)=>a.date.compareTo(b.date));
 
 //    final data = [
 //      new OrdinalHappinessBar('09:00', charts.Color.fromHex(code: "#ff0000")),
@@ -145,7 +147,7 @@ class ChartState extends State<Charts> {
     return [
       new charts.Series<OrdinalHappinessBar, String>(
         id: 'Happiness',
-        domainFn: (OrdinalHappinessBar sales, _) => sales.year,
+        domainFn: (OrdinalHappinessBar sales, _) => new DateFormat("HH:mm").format(sales.date),
         measureFn: (OrdinalHappinessBar sales, _) => 1,
         fillColorFn: (OrdinalHappinessBar sales, _) => sales.color,
         data: data,
@@ -210,10 +212,10 @@ enum TimeScale { DAY, MONTH, YEAR }
 enum ChartType { PIE, BAR }
 
 class OrdinalHappinessBar {
-  final String year;
+  final DateTime date;
   final charts.Color color;
 
-  OrdinalHappinessBar(this.year, this.color);
+  OrdinalHappinessBar(this.date, this.color);
 }
 
 class OrdinalHappinessPie {
