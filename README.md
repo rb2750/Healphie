@@ -13,6 +13,6 @@ All the charts have viewing options of day, month and year.
 
 <img src="Images/Bar Graph.png" alt="Bar Chart" width="300"/>
 
-There is also a pie chart which allows you to see what you're feeling a majority of the time.
+There is also a pie chart which allows you to see how you're feeling a majority of the time.
 
 <img src="Images/Pie Graph.png" alt="Bar Chart" width="300"/>
