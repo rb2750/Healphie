@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'charts.dart';
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sophie Health',
+      title: 'Healphie',
       home: MyHomePage(title: 'Log Health'),
     );
   }
@@ -92,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             image:  AssetImage('assets/drawer_header_background.png'))*/
                         ),
                     child: Stack(children: <Widget>[
-                      Positioned(bottom: 12.0, left: 16.0, child: Text("Sophie Health", style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.w500))),
+                      Positioned(bottom: 12.0, left: 16.0, child: Text("Healphie", style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.w500))),
                     ]))),
             Expanded(
                 child: ListView(
@@ -151,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           elevation: 2,
           iconTheme: new IconThemeData(color: Colors.white),
-          title: Text("Sophie Health"),
+          title: Text("Healphie"),
         ),
         body: body);
   }
@@ -357,25 +356,3 @@ class LogHealthFragment extends StatelessWidget {
   }
 }
 
-class CustomBoxShadow extends BoxShadow {
-  final BlurStyle blurStyle;
-
-  const CustomBoxShadow({
-    Color color = const Color(0xFF000000),
-    Offset offset = Offset.zero,
-    double blurRadius = 0.0,
-    this.blurStyle = BlurStyle.normal,
-  }) : super(color: color, offset: offset, blurRadius: blurRadius);
-
-  @override
-  Paint toPaint() {
-    final Paint result = Paint()
-      ..color = color
-      ..maskFilter = MaskFilter.blur(this.blurStyle, blurSigma);
-    assert(() {
-      if (debugDisableShadows) result.maskFilter = null;
-      return true;
-    }());
-    return result;
-  }
-}
