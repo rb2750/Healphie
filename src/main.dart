@@ -4,13 +4,14 @@ import 'package:flutter/widgets.dart';
 
 import 'pages/home/homestate.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(HealphieApp());
 
-class MyApp extends StatelessWidget {
+class HealphieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Healphie',
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'Log Health'),
     );
   }
