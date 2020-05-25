@@ -36,9 +36,6 @@ class ChartState extends State<Charts> {
 
   Widget makeButton(String text, Border border, TimeScale newTimeScale, ChartType newChartType, bool selected) {
     return InkWell(
-//      focusColor: Colors.black,
-//      highlightColor: Colors.black,
-//      hoverColor: Colors.black,
       onTap: () {
         if (chartTimeScale != newTimeScale || newChartType != chartType) {
           setState(() {
@@ -127,22 +124,7 @@ class ChartState extends State<Charts> {
       }
     }
 
-    data.sort((a,b)=>a.date.compareTo(b.date));
-
-//    final data = [
-//      new OrdinalHappinessBar('09:00', charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessBar('10:00', charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessBar('11:00', charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessBar('12:00', charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessBar('13:00', charts.Color.fromHex(code: "#00ff00")),
-//      new OrdinalHappinessBar('14:00', charts.Color.fromHex(code: "#ff00ff")),
-//      new OrdinalHappinessBar('15:00', charts.Color.fromHex(code: "#ff00ff")),
-//      new OrdinalHappinessBar('16:00', charts.Color.fromHex(code: "#ff00ff")),
-//      new OrdinalHappinessBar('17:00', charts.Color.fromHex(code: "#00ff00")),
-//      new OrdinalHappinessBar('18:00', charts.Color.fromHex(code: "#00ff00")),
-//      new OrdinalHappinessBar('19:00', charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessBar('20:00', charts.Color.fromHex(code: "#ff0000")),
-//    ];
+    data.sort((a,b)=>b.date.compareTo(a.date));
 
     return [
       new charts.Series<OrdinalHappinessBar, String>(
@@ -189,11 +171,7 @@ class ChartState extends State<Charts> {
       charts.Color chartColor = charts.Color(r: color.red, g: color.green, b: color.blue);
       data.add(new OrdinalHappinessPie(emotion, entry.value, chartColor));
     }
-//    final data = [
-//      new OrdinalHappinessPie('Happy', 5, charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessPie('Sad', 5, charts.Color.fromHex(code: "#ff0000")),
-//      new OrdinalHappinessPie('Anxious', 50, charts.Color.fromHex(code: "#ff0000")),
-//    ];
+    
     return [
       new charts.Series<OrdinalHappinessPie, String>(
         id: 'HappinessPie',
