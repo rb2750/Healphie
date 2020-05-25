@@ -1,5 +1,5 @@
-name: healphie
-description: Health tracker for Sophie
+name: Healphie
+description: Mental Health Tracker
 version: 1.0.0+1
 
 environment:
