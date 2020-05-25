@@ -4,7 +4,7 @@ This is a flutter app designed to help with tracking mental health over time. Th
 
 <img src="Images/Main Page.png" alt="Adding Mental Health" width="300"/>
 
-You get a reminder notification every hour to remind you to update how you're feeling in the app.
+You get a reminder notification every hour to remind you to update how you are feeling in the app.
 
 ## Charts
 After there is enough data the graphs will start to come in use, with the bar charts giving times up to the minute of how you felt on that day.
@@ -13,6 +13,6 @@ All the charts have viewing options of day, month and year.
 
 <img src="Images/Bar Graph.png" alt="Bar Chart" width="300"/>
 
-There is also a pie chart which allows you to see how you're feeling a majority of the time.
+This data can be also be viewed using a pie chart. This allows you to see how you are feeling a majority of the time.
 
 <img src="Images/Pie Graph.png" alt="Bar Chart" width="300"/>
